@@ -1,1 +1,139 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+int a,b,c,h,w;
+float p,P;
+printf("podaj 1 jesli znasz bok i wysokosc, a 2 jak dlugosc boku");
+scanf("%d",&w);
+if(w==1)
+{
+    printf("podaj dlugosc boku");
+    scanf("%d",&a);
+    printf("Podaj dlogosc wysokosci");
+    scanf("%d",&h);
+    P=a*h/2.0;
+    printf("pole trojkata o bokach %d i wysokosci %d wynosi %f",a,h,P);
+}
+else if(w==2)
+{
+    printf("Podaj dlugosci trzrech bokow");
+    scanf("%d%d%d",&a,&b,&c);
+    p=(a+b+c)/2.0;
+    P=sqrt(p*(p-a)*(p-b)*(p-c));
+    printf("Pole trojkata o bokach %d %d %d wynosi %f",a,b,c,P);
+}
+
+
+/*int x;
+scanf("%d",&x);
+printf("jest sobie %d a potem jest %d \n",x,x+4);
+
+scanf("%d",&x);
+printf("odwrotnosc %d to %f",x,1/(float)(x));
+
+float y;
+scanf("%f",&y);
+printf("jest sobie %.3f a dalej %.2f \n",y,y*2);
+
+double z;
+scanf("%lf",&z);
+printf("jest sobie %lf a dalej %lf \n",z,2*z);
+*/
+
+/*
+int x, y;
+scanf("%d%d",&x,&y);
+printf("Srednia arytmetyczna wynosi: %f \n",(x+y)/2.0);
+
+scanf("%d",&x);
+printf("Pierwiastek z tej liczby to %f \n",sqrt(x));
+
+scanf("%f",&x);
+printf("Wartosc bezwzgledna to %f \n",abs(x));
+*/
+
+/*
+float x;
+scanf("%f",&x);
+printf("%e \n",x);
+
+scanf("%f",&x);
+printf("%f \n",pow(x,1./3));
+
+printf("\3");
+*/
+
+/*
+int x;
+scanf("%d",&x);
+if(x>=0)
+{
+    printf("|%d| = %d",x,x);
+}
+else
+{
+    printf("|%d|=%d",x,-x);
+}
+*/
+
+/*
+int x;
+scanf("%d",&x);
+printf("signum(%d)=",x);
+if(x>=0)
+{
+    printf("1");
+}
+else if(x==0)
+{
+    printf("0");
+}
+else
+{
+    printf("-1");
+}
+*/
+
+/*
+int x,y,z;
+scanf("%d%d%d",&x,&y,&z);
+printf("max(%d,%d,%d)=",x,y,z);
+if((x>y) && (x>z))
+{
+    printf("%d",x);
+}
+else if(y>z)
+{
+    printf("%d",y);
+}
+else
+{
+    printf("%d",z);
+}
+*/
+
+/*
+int x,y,z;
+scanf("%d%d%d",&x,&y,&z);
+printf("med(%d,%d,%d)=",x,y,z);
+if(((x>=y) && (x<=z)) || ((x<=y) && (x>=z)))
+{
+    printf("%d",x);
+}
+else if(((x>=y) && (y>=z)) || ((x<=y) && (y<=z)))
+{
+    printf("%d",y)
+}
+else
+{
+    printf("%d",z);
+}
+*/
+
+    return 0;
+
+}
 
