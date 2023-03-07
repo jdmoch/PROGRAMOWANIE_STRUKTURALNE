@@ -101,3 +101,19 @@ int main()
     return 0;
 }
 
+SILNIA
+
+int main()
+{
+    int n,m,k;
+    scanf("%d",&n);
+    int i;
+    int w = 1;
+    for(i=2; i<=n; i++)
+    {
+       w=w*i;
+    }
+    printf("%d!=%d",n,w);
+    return 0;
+}
+
