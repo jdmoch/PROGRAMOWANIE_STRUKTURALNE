@@ -1,1 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+   int a,b,c,d,e,f;
+   float x,y;
+   scanf("%d%d%d%d%d%d",&a,&b,&c,&d,&e,&f);
+   printf("zdefiniowany uklad rownan");
+   printf("\n%d*x+%d*y=%d\n",a,b,c);
+   printf("%d*x+%d*y=%d",a,b,c);
+   int W,Wx,Wy;
+   W=a*e-b*d;
+   Wx=c*e-b*f;
+   Wy=a*f-c*d;
+   if(W==0)
+   {
+       if(Wx==0&&Wy==0)
+       {
+           printf("uklad sprzeczny");
+       }
+       else
+       {
+           printf("uklad wiele rozwiazan");
+       }
+   }
+     else
+       {
+           x=(float)(Wx)/W;
+           y=(float)(Wy)/W;
+           printf("rozwiazaniem ukladu jest x=%f, y= %f",x,y);
+       }
+   return 0;
+}
+
+DELTA
+
+
+int main()
+{
+    int a, b, c, delta;
+    scanf("%d%d%d",&a,&b,&c);
+    printf("podane zostaly liczby \n");
+    printf("\n%d*x^2+%d*x+%d",a,b,c);
+    delta = b*b - 4*a*c;
+    float x1, x2;
+    if(delta>0)
+    {
+        x1 = (-b- sqrt(delta))/(2*a);
+        x2 = (-b+ sqrt(delta))/(2*a);
+        printf("x1 wynosi %f a x2 wynosi %f",x1,x2);
+    }
+    else if(delta==0)
+    {
+        x1= (-b)/(2*a);
+        printf("x wynosi %f",x1);
+    }
+    else
+    {
+       printf("brak rozwiazan");
+    }
+
+}
+
+PETLA
+
 
