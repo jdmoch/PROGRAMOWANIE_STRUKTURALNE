@@ -1,1 +1,160 @@
+ZADANIE 1 zliczanie
 
+ void zlicz()
+    {
+        static int liczba=0;
+        liczba++;
+        printf("Te funckej wywalona %d razy\n",liczba);
+    }
+
+int main()
+{
+    zlicz();
+     zlicz();
+      zlicz();
+       zlicz();
+        zlicz();
+        return 0;
+}
+
+ZADANIE 2 SUMOWANIE
+
+int zsumuj(int a)
+    {
+        static int liczba=0;
+        liczba +=a;
+        printf("podana liczba %d i suma wynosi %d \n",a, liczba);
+        return liczba;
+    }
+
+int main()
+{
+    zsumuj(5);
+    zsumuj(3);
+    zsumuj(8);
+    zsumuj(2);
+    zsumuj(1);
+}
+
+ZADANIE 3 silnia
+
+int silnia(int a)
+{
+      if(a==0)
+      {
+          return 1;
+      }
+      else
+      {
+          return a*silnia(a-1);
+      }
+
+}
+
+int main()
+{
+   printf("%d\n",silnia(0));
+   printf("%d\n",silnia(6));
+   printf("%d\n",silnia(4));
+   printf("%d\n",silnia(1));
+}
+
+ZADANIE 4 zwracanie
+
+  int wyraz(int n)
+{
+    int a = 1;
+    if(n==0||n==1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 2*wyraz(n-1)+5;
+    }
+
+}
+
+int main()
+{
+    int i;
+    for(i=0; i<10; i++)
+    {
+        printf("%d\n",wyraz(i));
+    }
+
+}
+
+ZADANIE 5 cos innego
+int wyraz(int n)
+{
+    int a = 1;
+    if(n==0||n==1)
+    {
+        return 1;
+    }
+    else
+    {
+        return wyraz(n-1)+2*wyraz(n-2)+3;
+    }
+
+}
+
+int main()
+{
+    int i;
+    for(i=0; i<10; i++)
+    {
+        printf("%d\n",wyraz(i));
+    }
+
+}
+
+ZADANIE 6 FUNCKJA ciponaciego
+
+ZADANIE 7 pentla w rekurencji
+  int wyraz(int n)
+{
+    if(n==0)
+        return 1;
+    else if(n==1)
+        return 2;
+   int wynik = 0;
+   int i;
+   for(i=0;i<n;i++)
+   {
+       wynik = wynik+wyraz(i);
+   }
+   return wynik;
+}
+int main()
+{
+    int i;
+    for(i=0;i<10;i++)
+    {
+        printf("%d\n",wyraz(i));
+    }
+}
+
+ZADANIE 8 parzyste
+int wyraz(int n)
+{
+    if(n<=1)
+        return 1;
+    if(n%2==0)
+    {
+        return wyraz(n-1)+n;
+    }
+   else
+   {
+       return wyraz(n-1)*n;
+   }
+}
+int main()
+{
+    int i;
+    for(i=0;i<10;i++)
+    {
+        printf("%d\n",wyraz(i));
+    }
+}
