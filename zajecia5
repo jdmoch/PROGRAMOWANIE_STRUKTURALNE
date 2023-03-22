@@ -1,1 +1,189 @@
+WSKAZNIKI
+int podwoj(int *x)
+{
+    *x=2*(*x);
+    return *x;
+}
+
+
+int main()
+{
+    int a= 7;
+    printf("%d\n",podwoj(&a));
+    printf("%d",a);
+    return 0;
+
+}
+
+Zadanie1
+
+int podwoj(int *x, int *y)
+{
+    if(*x<*y)
+    {
+        return *x;
+    }
+    else
+    {
+         return *y;
+    }
+}
+
+
+int main()
+{
+    int a = 7;
+    int b = 4;
+    printf("%d",podwoj(&a,&b));
+
+}
+
+Zadanie 2
+
+int* minimum(int *x, int *y)
+{
+    if(*x<*y)
+    {
+        return x;
+    }
+    else
+    {
+         return y;
+    }
+}
+
+
+int main()
+{
+    int a = 7;
+    int b = 24;
+    printf("%p\n",&a);
+    printf("%p\n",&b);
+    printf("%p",minimum(&a,&b));
+    return 0;
+
+}
+
+Zadanie 3
+void zamiana(int *x, int *y)
+{
+  int temp;
+  temp=*x;
+  *x=*y;
+  *y=temp;
+}
+int main()
+{
+    int a = 7;
+    int b = 24;
+    printf("Przed zamiana: \n");
+    printf("a=%d\n",a);
+    printf("b=%d\n",b);
+    zamiana(&a,&b);
+    printf("Po zamianie: \n");
+    printf("a=%d\n",a);
+    printf("b=%d\n",b);
+    return 0;
+
+}
+Zadanie 4
+
+int suma_stalych(const int *x, const int *y)
+{
+    return *x+*y;
+}
+int main()
+{
+    const int a = 7;
+    const int b = 24;
+    printf("%d",suma_stalych(&a,&b));
+    return 0;
+
+}
+
+Zadanie 5
+
+int przepisz(int n, int *x)
+{
+    *x=n;
+}
+int main()
+{
+   int a=37;
+   przepisz(15,&a);
+   printf("%d",a);
+    return 0;
+
+}
+
+Zadanie 6
+int przepisz(int n, int *x)
+{
+    *x=n;
+}
+int main()
+{
+   int a=37;
+   przepisz(15,&a);
+   printf("%d",a);
+    return 0;
+
+}
+
+Zadanie 7
+float* rezerwuj()
+{
+    return malloc(sizeof(float));
+
+}
+int main()
+{
+   int* wsk=rezerwuj();
+   printf("%p",wsk);
+   return 0;
+}
+
+Zadanie 8 
+int main()
+{
+   printf("%d",sizeof(long));
+   return 0;
+}
+
+Zadanie 9
+void przepisz_stala(const int *x,int* y)
+{
+       *y=*x;
+}
+int main()
+{
+   const int a=5;
+   int b = 19;
+   przepisz_stala(&a,&b);
+   printf("a=%d\n",a);
+   printf("b=%d",b);
+   return 0;
+}
+
+Zadanie 10 (cw 3_2_13)
+double funckja(double(*fun)(int x),int y)
+{
+    return fun(y);
+}
+
+double testowa(int x)
+{
+    return x*x;
+}
+
+int main()
+{
+    int x = 5;
+    printf("%f\n",testowa(x));
+    double(*wskaznikdofunckji)(int);
+    wskaznikdofunckji=&testowa;
+    printf("%p\n",wskaznikdofunckji);
+    printf("%f\n",funckja(wskaznikdofunckji,8));
+    return 0;
+}
 
