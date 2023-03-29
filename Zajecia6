@@ -126,3 +126,88 @@ int main()
 }
 
 ZADANIE 2 sito jakies
+
+void sito(unsigned int n)
+{
+    bool tab[n];
+    int i;
+    for(i=0;i<n;i++)
+    {
+        tab[i]=true;
+    }
+    int j,k;
+    for(j=2;j<n;j++)
+    {
+        if(tab[j])
+        {
+            for(k=2*j;k<n;k=k+j)
+            {
+                tab[k]=false;
+            }
+        }
+    }
+    wypisz(n,tab);
+}
+
+ZADANIE 2 kolejne sito
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+void wypisz(unsigned int n, int * tab)
+{
+    int i;
+for(i=0; i<n;i++)
+{
+    printf("%d\t",tab[i]);
+}
+printf("\n");
+}
+
+int sito(unsigned int n)
+{
+    bool tab[n];
+    int i;
+    for(i=0;i<n;i++)
+    {
+        tab[i]=true;
+    }
+    int j,k;
+    for(j=2;j<n;j++)
+    {
+        if(tab[j])
+        {
+            for(k=2*j;k<n;k=k+j)
+            {
+                tab[k]=false;
+            }
+        }
+    }
+    int wynik;
+    int x=n;
+    while(!tab[x-1])
+    {
+        x=x-1;
+    }
+    return x-1;
+}
+
+
+int main()
+{
+printf("%d",sito(100));
+}
+
+Zadanie 3 odwroc
+
+void odwroc(unsigned int n, int * tab1, int* tab2)
+{
+    int i,j;
+    j=n-1;
+for(i=0;i<n;i++,j--)
+{
+    tab2[i]=tab1[j];
+}
+}
