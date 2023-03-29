@@ -23,4 +23,58 @@ int main()
     printf("%d\n",tab2[2]);
 }
 
-ZADANIE 1
+ZADANIE 1 ZEROWANIE i podwajanie i bezwzgledne
+
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, int * tab)
+{
+    int i;
+for(i=0; i<n;i++)
+{
+    printf("%d\t",tab[i]);
+}
+printf("\n");
+}
+
+void zeruj(unsigned int n, int * tab)
+{
+int i;
+for(i=0;i<n;i++)
+{
+    tab[i]*=2;
+}
+}
+
+void podwajanie(unsigned int n, int * tab)
+{
+int i;
+for(i=0;i<n;i++)
+{
+    tab[i] = i*2;
+}
+}
+
+void bezwzgledne(unsigned int n, int * tab)
+{
+    int i;
+    for(i = 0; i<n; i++)
+    {
+        tab[i] = abs(tab[i]);
+    }
+}
+
+int main()
+{
+    int tab[] = {8,2,5,1,0,9};
+    wypisz(6,tab);
+
+    wypisz(6,tab);
+    zeruj(6,tab);
+
+    wypisz(6,tab);
+    podwajanie(6,tab);
+
+    bezwzgledne(6,tab);
+
+}
