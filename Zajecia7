@@ -63,6 +63,9 @@ int main()
 }
 
 Zadanie 4.2.7
+
+SUMA
+
 a) void suma(unsigned int n, int * tab1, int * tab2, int *tab3)
 {
     int i;
@@ -84,6 +87,8 @@ suma(4,tab,tabb,wynik);
 }
 
 b)
+
+ZAMIANA
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -126,6 +131,8 @@ wypisz(4,tab3);
 
 C)
 
+DOKLEJENIE
+
 void wypisz(unsigned int n, double * tab1)
 {
     for (int i =0; i<n; i++)
@@ -134,6 +141,8 @@ void wypisz(unsigned int n, double * tab1)
     }
     printf("\n");
 }
+
+DOKLEJENIE
 
 void doklejenie(unsigned int n, double *tab1, double* tab2, double* tab3)
 {
@@ -163,5 +172,10 @@ wypisz(8,tab1);
 
 }
 
-D)
+Zadanie 4.2.9
+a)
+
+SORTOWANIE
+
+
 
