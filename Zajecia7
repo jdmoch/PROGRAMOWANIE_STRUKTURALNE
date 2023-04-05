@@ -62,154 +62,328 @@ int main()
     return 0;
 }
 
-Zadanie 4.2.7
-
-SUMA
-
-a) void suma(unsigned int n, int * tab1, int * tab2, int *tab3)
-{
-    int i;
-    for(i=0;i<n;i++)
-    {
-        tab3[i]=tab1[i]+tab2[i];
-        printf("%d ",tab3[i]);
-    }
-}
-
-int main()
-{
-int n;
-int tab[]={2,7,1,3};
-int tabb[]={4,5,2,8};
-int wynik[4];
-suma(4,tab,tabb,wynik);
-
-}
-
-b)
-
-ZAMIANA
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void wypisz(unsigned int n, double * tab1)
+//zad 4.2.7
+
+void sumatablic(unsigned int n,int * tab1,int * tab2, int * wynik){
+    for(int i=0;i<n;i++){
+        wynik[i]=tab1[i]+tab2[i];
+        printf("%d ",wynik[i]);
+    }
+}
+int main()
 {
-    for (int i =0; i<n; i++)
-    {
-        printf("%f ", tab1[i]);
+    int tab1[]={2,7,1,3};
+    int tab2[]={4,5,2,8};
+    int wynik[4];
+    sumatablic(4,tab1,tab2,wynik);
+}
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.7 maskyma
+
+void sumatablic(unsigned int n,int * tab1,int * tab2, int * wynik){
+    for(int i=0;i<n;i++){
+        if(tab2[i]>tab1[i]){
+            wynik[i]=tab2[i];
+        }
+        else{
+            wynik[i]=tab1[i];
+        }
+        printf("%d ",wynik[i]);
+    }
+}
+int main()
+{
+    int tab1[]={2,7,1,3};
+    int tab2[]={4,5,2,8};
+    int wynik[4];
+    sumatablic(4,tab1,tab2,wynik);
+}
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.7 przepisywanie tablicy c)
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
     }
     printf("\n");
 }
-
-void zamiana(unsigned int n, int *tab1, int* tab2, int* tab3)
-{
-    int i;
-    int temp;
-    for(i=0;i<n;i++)
-    {
-    temp = tab2[i];
-    tab2[i]= tab1[i];
-    tab1[i] = tab3[i];
-    tab3[i] = temp;
-    }
+void zamiana(unsigned int n,int * tab1, int * tab2,int * tab3){
+int temp;
+for(int i=0;i<n;i++){
+    temp=tab2[i];
+    tab2[i]=tab1[i];
+    tab1[i]=tab3[i];
+    tab3[i]=temp;
 }
 
+}
 int main()
 {
-int n;
-int tab1[]={2,7,1,3};
-int tab2[]={4,5,2,8};
-int tab3[]={2,7,1,3};
-int wynik[4];
-zamiana(4,tab1,tab2,tab3);
-wypisz(4,tab1);
-wypisz(4,tab2);
-wypisz(4,tab3);
-
+    int tab1[]={2,7,1,3};
+    int tab2[]={4,5,2,8};
+    int tab3[]={5,8,9,4};
+    zamiana(4,tab1,tab2,tab3);
+    wypisz(4,tab1);
+    wypisz(4,tab2);
+    wypisz(4,tab3);
 }
-
-C)
-
-DOKLEJENIE
-
-void wypisz(unsigned int n, double * tab1)
-{
-    for (int i =0; i<n; i++)
-    {
-        printf("%f ", tab1[i]);
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.8 a) nie dziala :((
+void wypisz(unsigned int n,double * tab1){
+    for(int i=0;i<n;i++){
+        printf("%f ",tab1[i]);
     }
     printf("\n");
 }
-
-DOKLEJENIE
-
-void doklejenie(unsigned int n, double *tab1, double* tab2, double* tab3)
-{
-  int i;
-  int temp;
-  for(i=0;i<2*n;i++)
-  {
-      if(i<n)
-      {
-          tab3[i]=tab1[i];
-      }
-      else
-      {
-          tab3[i]=tab2[i-n];
-      }
-  }
+void doklejenie(unsigned int n,double * tab1, double * tab2,double * tab3){
+for(int i=0;i<2*n;i++){
+    if(i<n){
+            tab3[i]=tab1[i];
+    }
+    else{
+        tab3[i]=tab2[i-n];
+    }
 }
-
+}
 int main()
 {
-int n;
-double tab[]={2,7,1,3};
-double tabb[]={4,5,2,8};
-double tab1[8];
-doklejenie(4,tab,tabb,tab1);
-wypisz(8,tab1);
-
+    double tab1[]={2,7,1,3};
+    double tab2[]={4,5,2,8};
+    double tab3[8];
+    doklejenie(4,tab1,tab2,tab3);
+    wypisz(8,tab3);
 }
-
-Zadanie 4.2.9
-a)
-
-SORTOWANIE
-
-
-MAXIMUM
-
-
-
-ILOCZYN SKALARNY
-
-void wypisz(unsigned int n, double * tab1)
-{
-    for (int i =0; i<n; i++)
-    {
-        printf("%f ", tab1[i]);
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.8 b) nieparzyste tablice dwie
+void wypisz(unsigned int n,double * tab1){
+    for(int i=0;i<n;i++){
+        printf("%f ",tab1[i]);
     }
     printf("\n");
 }
-
-int iloczyn_skalarny(unsigned int n, int *tab1, int *tab2)
-{
-    int S;
-    int i;
-    for(i=0; i<n; i++)
-    {
-        S=S+tab1[i]*tab2[i];
+void doklejenie(unsigned int n,double * tab1, double * tab2,double * tab3){
+for(int i=0;i<2*n;i++){
+    if(i%2==0){
+            tab3[i]=tab2[i/2];
     }
-    return S;
-
+    else{
+        tab3[i]=tab1[(i-1)/2];
+    }
 }
-
+}
 int main()
 {
-int tab[]={2,7,1,3};
-int tabb[]={4,5,2,8};
-printf("%d ",iloczyn_skalarny(4,tab,tabb));
+    double tab1[]={2,7,1,3};
+    double tab2[]={4,5,2,8};
+    double tab3[8];
+    doklejenie(4,tab1,tab2,tab3);
+    wypisz(8,tab3);
 }
-
-JEDEN W LEWo
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.9
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+void sortowanie(unsigned int n,int * tab1, int * tab2,int * tab3){
+for(int i=0;i<n;i++){
+    int max,min,srodek;
+    if(tab1[i]>=tab2[i] && tab1[i]>=tab3[i]){
+        max=tab1[i];
+        if(tab2[i]>tab3[i]){
+            srodek=tab2[i];
+            min=tab3[i];
+        }
+        else{
+            srodek=tab3[i];
+            min=tab2[i];
+        }
+    }
+    else{
+        if(tab2[i]>tab3[i]){
+         max=tab2[i];
+        if(tab3[i]>tab1[i]){
+            srodek=tab3[i];
+            min=tab1[i];
+        }
+        else{
+            srodek=tab1[i];
+            min=tab3[i];
+        }
+        }
+            else{
+            srodek=tab1[i];
+            min=tab2[i];
+        }
+    }
+tab1[i]=max;
+tab2[i]=srodek;
+tab3[i]=min;
+}
+}
+int main()
+{
+    int tab1[]={2,7,1,3};
+    int tab2[]={4,5,1,8};
+    int tab3[]={1,6,4,6};
+    sortowanie(4,tab1,tab2,tab3);
+    wypisz(4,tab1);
+    wypisz(4,tab2);
+    wypisz(4,tab3);
+}
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.10
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+int max(unsigned int n,int * tab1){
+    int wynik=tab1[0];
+    for(int i=0;i<n;i++){
+        if(tab1[i]>wynik){
+            wynik=tab1[i];
+        }
+    }
+    return wynik;
+}
+int main()
+{
+    int tab1[]={2,7,1,3};
+    printf("max: %d",max(4,tab1));
+}
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.10 b) najmniesza
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+int min(unsigned int n,int * tab1){
+    int wynik=tab1[0];
+    for(int i=0;i<n;i++){
+        if(tab1[i]<wynik){
+            wynik=tab1[i];
+        }
+    }
+    return wynik;
+}
+int main()
+{
+    int tab1[]={2,7,1,3};
+    printf("min: %d",min(4,tab1));
+}
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.10 c) indeks max
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+int max(unsigned int n,int * tab1){
+    int wynik=0;
+    int indeks=0;
+    for(int i=0;i<n;i++){
+        if(tab1[i]>wynik){
+            wynik=tab1[i];
+            indeks=i;
+        }
+    }
+    return indeks;
+}
+int main()
+{
+    int tab1[]={2,7,9,3};
+    printf("max indeks: %d",max(4,tab1));
+}
+#include <stdio.h>
+#include <stdlib.h>
+//zad 4.2.10 c) indeks min
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+int max(unsigned int n,int * tab1){
+    int wynik=tab1[0];
+    int indeks=0;
+    for(int i=0;i<n;i++){
+        if(tab1[i]<wynik){
+            wynik=tab1[i];
+            indeks=i;
+        }
+    }
+    return indeks;
+}
+int main()
+{
+    int tab1[]={782,7,9,3};
+    printf("max indeks: %d",max(4,tab1));
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+//zad 4.2.11 iloczyn skalarny
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+int iloczynskalarny(unsigned int n,int * tab1,int * tab2){
+    int wynik;
+    for(int i=0;i<n;i++){
+        wynik=tab1[i]*tab2[i];
+    }
+    return wynik;
+}
+int main()
+{
+    int tab1[]={2,7,9,3};
+    int tab2[]={2,1,3,7};
+    printf("iloczyn skalarny: %d",iloczynskalarny(4,tab1,tab2));
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+//zad 4.2.12 przesuniecie o jeden w lewo
+void wypisz(unsigned int n,int * tab1){
+    for(int i=0;i<n;i++){
+        printf("%d ",tab1[i]);
+    }
+    printf("\n");
+}
+void jedenwlewo(unsigned int n,int * tab1){
+    int wynik;
+    int temp=tab1[0];
+    for(int i=0;i<n;i++){
+        tab1[i]=tab1[i+1];
+    }
+    tab1[n-1]=temp;
+}
+int main()
+{
+    int tab1[]={2,7,9,3};
+    int tab2[]={2,1,3,7};
+    int tab11[]={6,2,3,1,6,9,8}; //7 ele
+    wypisz(7,tab11);
+    jedenwlewo(7,tab11);
+    wypisz(7,tab11);
+}
