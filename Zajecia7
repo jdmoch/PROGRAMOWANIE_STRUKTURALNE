@@ -176,9 +176,40 @@ Zadanie 4.2.9
 a)
 
 SORTOWANIE
+
+
 MAXIMUM
+
+
 
 ILOCZYN SKALARNY
 
+void wypisz(unsigned int n, double * tab1)
+{
+    for (int i =0; i<n; i++)
+    {
+        printf("%f ", tab1[i]);
+    }
+    printf("\n");
+}
 
+int iloczyn_skalarny(unsigned int n, int *tab1, int *tab2)
+{
+    int S;
+    int i;
+    for(i=0; i<n; i++)
+    {
+        S=S+tab1[i]*tab2[i];
+    }
+    return S;
 
+}
+
+int main()
+{
+int tab[]={2,7,1,3};
+int tabb[]={4,5,2,8};
+printf("%d ",iloczyn_skalarny(4,tab,tabb));
+}
+
+JEDEN W LEWo
