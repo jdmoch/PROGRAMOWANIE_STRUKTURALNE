@@ -62,3 +62,106 @@ int main()
     return 0;
 }
 
+Zadanie 4.2.7
+a) void suma(unsigned int n, int * tab1, int * tab2, int *tab3)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        tab3[i]=tab1[i]+tab2[i];
+        printf("%d ",tab3[i]);
+    }
+}
+
+int main()
+{
+int n;
+int tab[]={2,7,1,3};
+int tabb[]={4,5,2,8};
+int wynik[4];
+suma(4,tab,tabb,wynik);
+
+}
+
+b)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void wypisz(unsigned int n, double * tab1)
+{
+    for (int i =0; i<n; i++)
+    {
+        printf("%f ", tab1[i]);
+    }
+    printf("\n");
+}
+
+void zamiana(unsigned int n, int *tab1, int* tab2, int* tab3)
+{
+    int i;
+    int temp;
+    for(i=0;i<n;i++)
+    {
+    temp = tab2[i];
+    tab2[i]= tab1[i];
+    tab1[i] = tab3[i];
+    tab3[i] = temp;
+    }
+}
+
+int main()
+{
+int n;
+int tab1[]={2,7,1,3};
+int tab2[]={4,5,2,8};
+int tab3[]={2,7,1,3};
+int wynik[4];
+zamiana(4,tab1,tab2,tab3);
+wypisz(4,tab1);
+wypisz(4,tab2);
+wypisz(4,tab3);
+
+}
+
+C)
+
+void wypisz(unsigned int n, double * tab1)
+{
+    for (int i =0; i<n; i++)
+    {
+        printf("%f ", tab1[i]);
+    }
+    printf("\n");
+}
+
+void doklejenie(unsigned int n, double *tab1, double* tab2, double* tab3)
+{
+  int i;
+  int temp;
+  for(i=0;i<2*n;i++)
+  {
+      if(i<n)
+      {
+          tab3[i]=tab1[i];
+      }
+      else
+      {
+          tab3[i]=tab2[i-n];
+      }
+  }
+}
+
+int main()
+{
+int n;
+double tab[]={2,7,1,3};
+double tabb[]={4,5,2,8};
+double tab1[8];
+doklejenie(4,tab,tabb,tab1);
+wypisz(8,tab1);
+
+}
+
+D)
+
