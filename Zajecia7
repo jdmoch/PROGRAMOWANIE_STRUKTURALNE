@@ -1,1 +1,64 @@
+Tablice
+
+int main()
+{
+int tab[100] = {4,2,2,1,3,3,3,1,1,1,1,2,5,2};
+int temp = 1;
+for(int i=1;i<100;i++)
+{
+    if(tab[i]==tab[i-1])
+    {
+        temp++;
+    }
+    else
+        {
+        printf("%d %d ",temp,tab[i-1]);
+        temp = 1;
+        }
+}
+
+}
+
+Deszczowka
+
+int kaluza(int wysokoszc[],int n)
+{
+    int lewa=0;
+    int prawa=n-1;
+    int lewa_max=0;
+    int prawa_max=0;
+    int woda = 0;
+
+    while(lewa<prawa)
+    {
+        if(wysokoszc[lewa]>lewa_max)
+        {
+            lewa_max=wysokoszc[lewa];
+        }
+        if(wysokoszc[prawa]>prawa_max)
+        {
+            prawa_max=wysokoszc[prawa];
+        }
+        if(lewa_max<=prawa_max)
+        {
+            woda+=lewa_max - wysokoszc[lewa];
+            lewa++;
+        }
+        else
+        {
+            woda += prawa_max-wysokoszc[prawa];
+            prawa--;
+        }
+    }
+    return woda;
+}
+
+int main()
+{
+    int wysokoszc[]={4,2,7,9,2,5,6,8,3,7};
+    int n = sizeof(wysokoszc)/sizeof(wysokoszc[0]);
+
+    printf("%d",kaluza(wysokoszc,n));
+    return 0;
+}
 
