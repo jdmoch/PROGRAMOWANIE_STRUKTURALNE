@@ -1,1 +1,44 @@
+//Czyszczenie
+
+void wyczysc(char *napis)
+{
+    napis[0] = 0;
+}
+
+int main()
+{
+    printf("\ncw 5_2_1 \n");
+    char *napis="pieczewo";
+    printf(napis);
+    printf("\n");
+    printf("co nam wyswietli po wyczyszczeniu");
+    wyczysc(napis);
+    printf(napis);
+    free(napis);
+
+}
+
+//dlugosc napisu
+
+int dlugosc(char *napis)
+{
+    int i =0;
+    while(napis[i]!=0)
+    {
+        i++;
+    }
+    return i;
+}
+
+int main()
+{
+    printf("%d\n",dlugosc("programowanie to super przedmiot"));
+    printf("%d\n",dlugosc("olsztyn"));
+    //sposob mniej bezpsredni
+    char* napis="costam";
+    printf("%d\n", dlugosc(napis));
+
+}
+
+//porównywanie
 
