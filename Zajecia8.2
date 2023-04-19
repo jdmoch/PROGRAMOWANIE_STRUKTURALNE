@@ -1,44 +1,243 @@
-//Czyszczenie
-
-void wyczysc(char *napis)
-{
-    napis[0] = 0;
-}
-
+#include <stdio.h>
+#include <stdlib.h>
+//5_2_1
+void wyczysc(char *napis){
+    napis[0]=0;
+    }
 int main()
 {
-    printf("\ncw 5_2_1 \n");
     char *napis="pieczewo";
     printf(napis);
     printf("\n");
-    printf("co nam wyswietli po wyczyszczeniu");
+    printf("co wyswietli po wyczysczeniu");
     wyczysc(napis);
     printf(napis);
     free(napis);
-
 }
-
-//dlugosc napisu
-
-int dlugosc(char *napis)
-{
-    int i =0;
+//5_2_2
+int dlugosc(char *napis){
+    int i=0;
     while(napis[i]!=0)
-    {
         i++;
-    }
     return i;
-}
-
+    }
 int main()
 {
-    printf("%d\n",dlugosc("programowanie to super przedmiot"));
-    printf("%d\n",dlugosc("olsztyn"));
-    //sposob mniej bezpsredni
-    char* napis="costam";
-    printf("%d\n", dlugosc(napis));
-
+    char *napis="pieczewo";
+    printf(napis);
+    printf("\n");
+    printf("dluogosc wyrazu = %d",dlugosc(napis));
 }
-
-//porównywanie
-
+//dlg bez spacji
+int dlugosc(char *napis){
+int i=0;
+int pom=0;
+while(napis[i]!=0)
+{
+    if(napis[i]!=32)
+        pom++;
+        i++;
+}
+return pom;
+}
+int main()
+{
+    char *napis="piec zewo";
+    printf(napis);
+    printf("\n");
+    printf("dluogosc wyrazu = %d",dlugosc(napis));
+}
+// 5_2_3
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+int porownaj(char *napis1,char *napis2){
+int i;
+if(dlugosc(napis1)==dlugosc(napis2)){
+    for(i=0;i<dlugosc(napis1);i++){
+        if(napis1[i]!=napis2[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+else{
+    return 0;
+}
+}
+int main()
+{
+    char *napis="pieczewo";
+    char *napis1="dlugi";
+    char *napis2="dlugi";
+    printf("%d",porownaj(napis1,napis2));
+}
+// 5.2.4 nie dziala
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+int slownikowo(char *napis1,char *napis2){
+int i,x;
+for(i=0;napis1[i] || napis2[i];i++){
+    if(napis1[i]==0 && napis2[i]!=0){
+        return 0;
+    }
+    if(napis1[i]!=0 && napis2[i]==0){
+        return 1;
+    }
+    if(napis1[i]==0 && napis2[i]==0){
+        for(x=0;napis1[x];x++){
+            if(napis1[x]<napis2[x]==0){
+                return 0;
+            }
+        }
+    }
+}
+}
+int main()
+{
+    char *napis="pieczewo";
+    char *napis1="dlugi";
+    char *napis2="wwadwadas";
+    printf("%d",slownikowo(napis1,napis2));
+}
+// 5_2_5 kompletnie nie dziala
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+int slownikowo(char *napis1,char *napis2){
+int i,x;
+for(i=0;napis1[i] || napis2[i];i++){
+    if(napis1[i]==0 && napis2[i]!=0){
+        return 0;
+    }
+    if(napis1[i]!=0 && napis2[i]==0){
+        return 1;
+    }
+    if(napis1[i]==0 && napis2[i]==0){
+        for(x=0;napis1[x];x++){
+            if(napis1[x]<napis2[x]==0){
+                return 0;
+            }
+        }
+    }
+}
+}
+int main()
+{
+    char *piaty="student";
+    char *szosty=malloc(20*sizeof(char));
+    wypisz(piaty);
+}
+// 5_2_6 rowniez nie dziala :)))
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+void kopiujn(unsigned int n,char *nap1,char *nap2){
+    int i;
+    for(i=0;i<dlugosc(nap1)&&i<n;i++){
+        nap2[i]=nap1[i];
+    }
+    nap2[i]=0;
+}
+void wypisz(char * napis){
+printf("%s\n",napis);
+}
+int main()
+{
+    char *nap1="zgery";
+    char *nap2="pykpyk";
+    printf(nap1);
+    kopiujn(3,nap1,nap2);
+}
+// 5_2_7
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+void sklej(char * nap1,char * nap2, char * nap3){
+int i,j;
+for(i=0;nap1[i]!=0;i++){
+    nap3[i]=nap1[i];
+}
+for(j=0;nap2[j]!=0;i++,j++){
+    nap3[i]=nap2[j];
+}
+nap3[i]=0;
+}
+void wypisz(char * napis){
+printf("%s\n",napis);
+}
+int main()
+{
+    char *nap1="zgery ";
+    char *nap2="pykpyk";
+    char *nap3[70];
+    sklej(nap1,nap2,nap3);
+    printf(nap3);
+}
+// 5_2_8 
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+void wypisz(char * napis){
+printf("%s\n",napis);
+}
+void maleduze(char * nap){
+int i;
+for(i=0;nap[i]!=0;i++){
+    if(nap[i] >= 'a' && nap[i] <= 'z'){
+    nap[i]=nap[i]+'A'-'a';
+    }
+}
+}
+int main()
+{
+    char nap1[50]="zgery";
+    printf(nap1);
+    printf("\n");
+    maleduze(nap1);
+    printf(nap1);
+}
+// 5_2_9 nie dziala
+int dlugosc(char *napis){
+    int i=0;
+    while(napis[i]!=0)
+        i++;
+    return i;
+    }
+void wypisz(char * napis){
+printf("%s\n",napis);
+}
+void wytnij(char * nap1,int n,int m){
+    int i,j;
+    char wynik[50];
+    for(i=n;i<=m;i++){
+    wynik[i]=nap1[i];
+    }
+    printf(wynik);
+}
+int main()
+{
+    char nap1[50]="informatyka";
+    printf(nap1);
+    printf("\n");
+    wytnij(nap1,3,6);
+}
