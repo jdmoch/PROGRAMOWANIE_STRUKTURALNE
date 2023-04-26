@@ -1,1 +1,48 @@
+Przyklad1
 
+#include <stdio.h>
+#include <stdlib.h>
+
+void wytnij(char *napis, int n, int m)
+{
+    int i,j;
+    for (j=0;napis[j]!=0;j++)
+    {
+        //ustala dlugosc napisu
+    }
+    if(j+1>m) // jesli napis jest wystarczajaco dlugi
+    {
+        for(i=0; i+m<j;i++)
+        {
+            napis[n+i] = napis[m+i+1]; //n=5 m=15
+        }
+    }
+    else if((n<j)&&(j+1<=m))
+    {
+        napis[n]=0;
+    }
+}
+
+int main()
+{
+    printf("\ncw 5_2_9");
+    char napiszad9[40]="tutaj wuycinamu cos";
+    printf(napiszad9);
+    printf("\n");
+    wytnij(napiszad9,5,15);
+    printf(napiszad9);
+    printf("\n");
+    char napiszkrotki[40]="krotki";
+    printf(napiszkrotki);
+    printf("\n");
+    wytnij(napiszkrotki,8,12);
+    printf(napiszkrotki);
+    printf("\n");
+    char napissredniodlugi[20]="sredni";
+    printf(napissredniodlugi);
+    printf("\n");
+    wytnij(napissredniodlugi,4,10);
+    printf(napissredniodlugi);
+}
+
+Zadanie 1
