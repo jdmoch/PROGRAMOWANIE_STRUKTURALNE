@@ -1,0 +1,222 @@
+ZADANIE 1 - KARTY trojka itd
+int main()
+{
+    int x,y,z,w;
+    scanf("%d%d%d%d",&x,&y,&z,&w);
+     if (x == y && y == w && w == z)
+    {
+        printf("kareta\n");
+    }
+    else if ((x == y && w == z) || (x == w && y == z) || (x == z && y == w))
+    {
+        printf("dwie pary\n");
+    }
+    else if ((x == y && y != w && y != z) || (x == w && w != y && w != z) || (x == z && z != y && z != w) ||
+               (y == w && w != x && w != z) || (y == z && z != x && z != w) || (w == z && z != x && z != y))
+    {
+    printf("para\n");
+    }
+    else if ((x == y && y == w && z != x) || (x == y && y == z && w != x) || (x == w && w == z && y != x) ||
+               (y == w && w == z && x != y))
+    {
+        printf("trojka\n");
+    }else
+    {
+        printf("nic");
+    }
+}
+
+
+ZADANIE 2 - 3 cyfrowe liczby ktore maja dzielniki maks dzielniki 
+
+int main()
+{
+  int maksdzielnik=0;
+    int szukanaliczba;
+    for(int i=100;i<1000;i++){
+        int dzielniki=0;
+        for(int j=1;j<=i;j++){
+            if(i%j==0){
+                dzielniki++;
+            }
+        }
+        if(dzielniki>maksdzielnik){
+            maksdzielnik=dzielniki;
+            szukanaliczba=i;
+        }
+    }
+    printf("Liczba %d ma %d dzielniki\n",szukanaliczba,maksdzielnik);
+    printf("Oto dzielniki liczby %d: \n",szukanaliczba);
+    for(int i=1;i<=szukanaliczba;i++){
+        if(szukanaliczba%i==0){
+            printf("%d. ",i);
+        }
+    }
+    printf("\n");
+}
+
+
+ZADANIE 3 - napisac funkcje cyfrawybrana od lewej strony do prawej
+
+int cyfrawybrana(int n, int k) {
+    if (n == 0) {
+        return 0;
+    }
+    int liczba_cyfr = 0;
+    int temp = n;
+    while (temp != 0) {
+        liczba_cyfr++;
+        temp /= 10;
+    }
+    if (liczba_cyfr < k) {
+        return 0;
+    }
+    int cyfra;
+    temp = n;
+    while (liczba_cyfr > k) {
+        temp /= 10;
+        liczba_cyfr--;
+    }
+    cyfra = temp % 10;
+    return cyfra;
+}
+
+int main()
+{
+ printf("%d\n",cyfrawybrana(5824,3));
+}
+
+/// cyfra wybrana od prawej strony noway
+/*
+int cyfrawybrana(int n, int k) {
+    int cyfra = 0, licznik = 0;
+    while (n > 0) {
+        cyfra = n % 10;
+        n /= 10;
+        licznik++;
+        if (licznik == k) {
+            return cyfra;
+        }
+    }
+    return 0;
+}
+
+
+ZADANIE 5
+a) DWUKROTNOSC LICZB WSKAZNIK napisz funkcję, otrzymującą jako argument wskaźnik do zmiennej typu int, która zwraca dwukrotność liczby wskazywanej przez argument
+
+int podwoj(int *liczba)
+{
+    int wynik = *liczba * 2;
+}
+
+int main() {
+    int liczba = 2;
+    int wynik = podwoj(&liczba);
+    printf("Wynik: %d\n", wynik);
+
+    return 0;
+}
+
+b) SREDNIA otrzymującą jako arguemnty zmienną typu unsigned int oraz wskaźnik do zmiennej typu unsigned int. Funckja ma zwracać wskaźnik, który wskazuje na średnią arytmetyczną liczby całkowitej z pierwszego argumentu i liczby całkowitej wskazywanej przez drugi argument
+
+unsigned int *srednia(unsigned int liczba1, unsigned int *liczba2) {
+    static unsigned int wynik;
+    wynik = (liczba1 + *liczba2) / 2;
+    return &wynik;
+}
+
+int main() {
+    unsigned int liczba1 = 10;
+    unsigned int liczba2 = 5;
+    unsigned int *wynik = srednia(liczba1, &liczba2);
+    
+    printf("Wynik: %u\n", *wynik);
+
+    return 0;
+}
+
+printf("Wynik: %u\n", *wynik);
+
+
+ZADANIE 6 Napisz funkcję która otrzymuje dwa argumenty dodatnią liczbę całkowitą n oraz n-elementową tablice tab o elementach typu int. Funkcja wypisze elementy tablice w kolejności w jakiej w niej występują, tak aby elementy, których wartości się powtarzają były wypisane tylko zap ierwszym razem pojawienia się w tablicy.
+
+void wypisz_unikalne(int n, int tab[]) {
+    int i, j;
+    int powtorzenia = 0;
+
+    for (i = 0; i < n; i++) {
+        powtorzenia = 0;
+        for (j = 0; j < i; j++) {
+            if (tab[j] == tab[i]) {
+                powtorzenia = 1;
+                break;
+            }
+        }
+        if (!powtorzenia) {
+            printf("%d ", tab[i]);
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    int tablica[] = {7, 4, 6, 7, 5, 5, 8, 6, 7};
+    int rozmiar = sizeof(tablica) / sizeof(tablica[0]);
+
+    wypisz_unikalne(rozmiar, tablica);
+
+    return 0;
+}
+
+ZADANIE 7napisz funkcję która otrzymuje dwa argumenty dodatnią liczbę całkowitą n oraz n-elementową tablicę tab o elementach typu unsigned int. Funkcja ma zmodyfikować tablicę w taki sposób, aby jej parzyste elementy były w odwrotnej kolejności. Nieparzyste pozostawia bez zmian.
+
+void odwroc(int tab[], int n) {
+    for (int i = 0; i < n/2; i++) {
+        int temp = tab[i];
+        tab[i] = tab[n-1-i];
+        tab[n-1-i] = temp;
+    }
+}
+void zamiana(unsigned int n,unsigned int tab[]){
+    int ileelemenotwa=0;
+    for(int c=0;c<n;c++){
+        if(tab[c]%2==0){
+            ileelemenotwa++;
+        }
+    }
+    int wynik[ileelemenotwa];
+    int licznik = 0;
+    for (int i = 0; i < n; i++) {
+        if(tab[i]%2==0){
+        wynik[licznik]=tab[i];
+        licznik++;
+        }
+    }
+    int odwrocone[ileelemenotwa];
+    odwroc(wynik,ileelemenotwa);
+    int licznik2=0;
+    int koniec[n];
+    for(int j=0;j<n;j++){
+        if(tab[j]%2==0){
+            tab[j]=wynik[licznik2];
+            licznik2++;
+        }
+    }
+    for (int y = 0; y < n; y++) {
+        printf("%u ", tab[y]);
+    }
+}
+int main()
+{
+    unsigned int tab[] = {4, 8, 1, 6, 3, 2, 9, 5};
+    unsigned int m = sizeof(tab) / sizeof(tab[0]);
+
+    printf("Przed modyfikacja: ");
+    for (int i = 0; i < m; i++) {
+        printf("%u ", tab[i]);
+    }
+    printf("\n");
+    zamiana(m,tab);
+    return 0;
+}
