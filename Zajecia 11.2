@@ -1,65 +1,230 @@
-Zadanie - trojkat dodawanie
-struct trojkat
-{
-    double a,b,c
+7.2.1/ 7.2.2
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+struct trojkat{
+    double a, b, c;
 };
 
-double obwod(struct trojkat t)
-{
-    return t.a+t.b+t.c;
+double obwod(struct trojkat t){
+    return t.a + t.b + t.c;
 }
+
+double pole(struct trojkat t){
+    double p, P;
+    p = (t.a+t.b+t.c)/2.0;
+    P = sqrt((p*(p-t.a)*(p-t.b)*(p-t.c)));
+    return P;
+}
+
+void czy_to_trojkat(struct trojkat t){
+    if((t.a+t.b>t.c) && (t.a+t.c>t.b) && (t.c+t.b>t.a)){
+        printf("Taki trojkat isnieje\n");
+    }else{
+        printf("Taki trojkat nie isnieje\n");
+    }
+}
+
+void jakitrojkot(struct trojkat t){
+    if((t.a*t.a + t.b*t.b > t.c*t.c) && (t.c*t.c + t.b*t.b > t.a*t.a) && (t.a*t.a + t.c*t.c > t.b*t.b)){
+       printf("Taki trojkat jest ostry\n");
+    }
+    else if((t.a*t.a + t.b*t.b == t.c*t.c) || (t.c*t.c + t.b*t.b == t.a*t.a) || (t.a*t.a + t.c*t.c == t.b*t.b)){
+       printf("Taki trojkat jest prostokatny\n");
+    }
+    else if((t.a*t.a + t.b*t.b < t.c*t.c) || (t.c*t.c + t.b*t.b < t.a*t.a) || (t.a*t.a + t.c*t.c < t.b*t.b)){
+       printf("Taki trojkat jest rozwarty\n");
+    }
+}
+
+
+void przepisz(struct trojkat t1, struct trojkat *t2){
+    *t2 = t1;
+}
+
+void wypisz(struct trojkat t){
+    printf("a: %f\n", t.a);
+    printf("b: %f\n", t.b);
+    printf("c: %f\n", t.c);
+    printf("\n");
+}
+
 int main()
 {
     struct trojkat t1;
-    t1.a=3;
-    t1.b=4;
-    t1.c=5;
+    t1.a = 3;
+    t1.b = 4;
+    t1.c = 5;
+
+    struct trojkat *t2;
+    t2 = malloc(sizeof(struct trojkat));
+    przepisz(t1, t2);
+
+    wypisz(t1);
+    wypisz(*t2);
+
     printf("Obwod: %f\n", obwod(t1));
-    printf("%d\n",sizeof(double));
-    printf("%d",sizeof(struct trojkat));
+    printf("Pole: %f\n", pole(t1));
+    czy_to_trojkat(t1);
+    jakitrojkot(t1);
+    printf("%d\n", sizeof(double));
+    printf("%d\n", sizeof(struct trojkat));
+
+
+
+    return 0;
 }
 
-Zadanie 2
 
-struct trojkat
-{
-    double a,b,c;
+7.2.3
+
+struct punkt{
+    double x, y, z;
 };
 
-void przepisz(struct trojkat t1, struct trojkat *t2)
-{
-    *t2=t1;
-}
 
-void wypisz(struct trojkat tr1)
-{
-    printf("pole %f ",tr1.a);
-    printf("pole %f ",tr1.b);
-    printf("pole %f ",tr1.c);
-    printf("\n");
+double odlegloscpunktu(struct punkt P, struct punkt Q){
+
+    return sqrt((P.x-Q.x)*(P.x-Q.x) + (P.y-Q.y)*(P.y-Q.y) + (P.z-Q.z)*(P.z-Q.z));
 
 }
+
+double minimum(struct punkt tab[], int n){
+int i, j;
+double pom;
+double min = odlegloscpunktu(tab[0], tab[1]);
+
+for(i=0;i<n-1;i++){
+    for(j=i+1;j<n;j++){
+       pom = odlegloscpunktu(tab[i],tab[j]);
+    }
+    if(pom<min){
+        min=pom;
+    }
+
+}
+return min;
+}
+
+w main:
+
+struct punkt p1;
+    p1.x = 1;
+    p1.y = 7;
+    p1.z = 2;
+
+    struct punkt p2;
+    p2.x = 4;
+    p2.y = 9;
+    p2.z = 0;
+    
+    struct punkt p3;
+    p3.x = 2;
+    p3.y = 5;
+    p3.z = 8;
+    
+    printf("Odleglosc: %f", odlegloscpunktu(p1, p2));
+    
+    w domu : 7.2.4/5/6
+    
+    7.2.7
+    
+    struct zespolona{
+    double re, im;
+};
+
+
+
+
+void dodaj(struct zespolona z1, struct zespolona z2){
+    double a = z1.re + z2.re;
+    double b = z1.im + z2.im;
+
+    printf("Wynik: %f + %fi\n", a, b);
+}
+
+struct zespolona dodaj2(struct zespolona z1, struct zespolona z2){
+        struct zespolona suma;
+        suma.re = z1.re + z2.re;
+        suma.im = z1.im + z2.im;
+        return suma;
+};
+
+struct zespolona iloczyn(struct zespolona z1, struct zespolona z2){
+        struct zespolona iloczyn;
+        iloczyn.re = z1.re*z2.re - z1.im*z2.im;
+        iloczyn.im = z1.re*z2.im + z1.im*z2.re;
+        return iloczyn;
+};
+
+void wypisz(struct zespolona z){
+    printf("Wynik: %f + %fi\n", z.re, z.im);
+}
+
+void sprz(struct zespolona z){
+    printf("Wynik: %f + %fi\n", z.re, -z.im);
+}
+
+struct zespolona sprz2(struct zespolona z1){
+        struct zespolona sprz;
+        sprz.re = z1.re;
+        sprz.im = -z1.im;
+        return sprz;
+};
+
+w main:
+
+struct zespolona z1;
+    z1.re = 1;
+    z1.im = 3;
+
+    struct zespolona z2;
+    z2.re = 2;
+    z2.im = 1;
+
+    dodaj(z1, z2);
+    wypisz(dodaj2(z1, z2));
+    wypisz(iloczyn(z1, z2));
+    sprz(z1);
+    wypisz(sprz2(z1));
+    return 0;
+    
+    
+    --- w domu można zrobić na iloczyn
+    (oblicz (a+bi)/(c+di) i wpisz jak dodawanie mnożenie ko podzielne jakoś przez mianownik (kombinuj))
+    
+7.2.10
+
+#include <stdio.h>
+#include <stdlib.h>
+
+union super_int{
+    int i;
+    unsigned int u;
+};
+
+struct wiele_int{
+    int i;
+    unsigned int u;
+};
 
 int main()
 {
-    struct trojkat tr1;
-    tr1.a = 3;
-    tr1.b = 4;
-    tr1.c = 5;
-    struct trojkat tr2;
-    tr2.a = 1;
-    tr2.b = 1;
-    tr2.c = 1;
-    struct trojkat *wsk2=&tr2;
-    wypisz(tr1);
-    wypisz(tr2);
-    przepisz(tr1,wsk2);
-    wypisz(tr1);
-    wypisz(*wsk2);
+    struct wiele_int X;
+    union super_int Y;
+    printf("%d\n", sizeof(int));
+    printf("%d\n", sizeof(unsigned int));
 
+    printf("%d\n", sizeof(X));
+    printf("%p\n", &X);
+    printf("%p\n", &X.i);
+    printf("%p\n", &X.u);
 
+    printf("%d\n", sizeof(Y));
+    printf("%p\n", &Y);
+    printf("%p\n", &X.i);
+    printf("%p\n", &X.u);
+    return 0;
 }
-
-Zadanie 3 (cwiczenie 7_2_3)
-
-
