@@ -1,4 +1,6 @@
 Zadanie 1
+funkcja ktora zwraca napis o jednym argumencie bedacym napisem. modyfikuje i oddziela od nazwiska kropka oraz pierwsze litery sa duze
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -37,6 +39,7 @@ int main() {
 }
 
 Zadanie 2
+napisz funkcję która zwaraca napis o jednym argumencie będącym napisem. Funkcja modyfikuje napis z arguemntu w taki sposób, że jeśli małe litery a i b stoją w nim obok siebie to oddziela je dużą literą W wstawiając ją pomiędzy.
 
 char* wstawWpomiedzyAB(char* str) {
     if(str == NULL) return NULL;
@@ -78,6 +81,8 @@ int main() {
 }
 
 Zadanie 3
+a) funkcja ktora otrzymuje w argumencie kwadratowa tablice tablic elementow typu int oraz jej wymiar i zwraca slad przekazanej w argumencie macierzy. slad to suma elementow przekatnej macierzy
+b) funkcja w arguemncie otrzymuje liczby dodatnie calkowite m i n oraz dwuwymiarowa tablcie tablic elementow typ int. funkcja ma obliczyc sume wszystkich elementow parzystych maceirzy i znajduja sie w na brzegu(pierszy lub ostatni wirsz lub ostatniej kolumnie)
 
 include <stdio.h>
 
@@ -115,6 +120,8 @@ int main() {
 
 
 Zadanie 4
+a)funckja tkotra dostaje argumenty tablice dwuwynmiarowa o elementach typiu ont i jej wymiary i odwraca kolejnosc w kolumnach
+b) zmienia kolejnosc kolumn przesuwajac je o dwa w prawo w tablicy tak ze pierwsza ma byc na miejscu trzeciej, kolumna druga na miejscu czwartej a ostatnia na miejscu drugiej a przedostatnia na pierwszym
 
 #include <stdio.h>
 
@@ -189,6 +196,7 @@ int main() {
 }
 
 Zadanie 5
+program ktory modyfikuje liste w taki sposob ze zwraca liste co drugiego elementu wyjsciowej listy np 15872 to 182
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -265,6 +273,7 @@ int main() {
 }
 
 Zadanie 6
+zwraca liste z usuneiciem srodkowego elementu badz elementow. kiedy liczba elementow jest parzysta wywala dwa eleemnty srodkowe inaczej jeden wywala
 
 #include <stdio.h>
 #include <stdlib.h>
