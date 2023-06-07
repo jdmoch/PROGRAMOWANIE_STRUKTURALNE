@@ -1,0 +1,356 @@
+Zadanie 1
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void formatName(char* name) {
+    if (name == NULL)
+    {
+        return 0;
+    }
+    // Konwersja na małe litery
+    for (int i = 0; name[i]; i++){
+        name[i] = tolower(name[i]);
+    }
+
+     // Konwersja pierwszej litery na dużą
+    name[0] = toupper(name[0]);
+
+    // Szukanie spacji i konwersja następującej po niej litery na dużą
+    // Zmiana spacji na kropkę
+    for (int i = 0; name[i]; i++){
+        if (name[i] == ' '){
+            name[i] = '.';
+            name[i+1] = toupper(name[i+1]);
+        }
+    }
+}
+
+int main() {
+    char name[] = "KAMIL NOWAK";
+
+    formatName(name);
+
+    printf("%s\n", name);
+
+    return 0;
+}
+
+Zadanie 2
+
+char* wstawWpomiedzyAB(char* str) {
+    if(str == NULL) return NULL;
+
+    int length = strlen(str);
+    int count = 0;
+
+
+    for(int i = 0; i < length-1; i++) {
+        if((str[i] == 'a' && str[i+1] == 'b') || (str[i] == 'b' && str[i+1] == 'a')) {
+            count++;
+        }
+    }
+
+
+    char* newStr = malloc((length + count + 1) * sizeof(char));
+    if(newStr == NULL) return NULL;
+
+    int j = 0;
+    for(int i = 0; i < length; i++) {
+        if((str[i] == 'a' && str[i+1] == 'b') || (str[i] == 'b' && str[i+1] == 'a')) {
+            newStr[j++] = str[i];
+            newStr[j++] = 'W';
+        } else {
+            newStr[j++] = str[i];
+        }
+    }
+    newStr[j] = '\0';
+    return newStr;
+}
+
+int main() {
+    char str[] = "doba, abazur, baba , baobab";
+    char* newStr = wstawWpomiedzyAB(str);
+    printf("%s\n", newStr);
+    free(newStr);
+
+    return 0;
+}
+
+Zadanie 3
+
+include <stdio.h>
+
+int wymiar(int n, int matrix[n][n]) {
+    int trace = 0;
+    for(int i=0; i<n; i++) {
+        trace += matrix[i][i];
+    }
+    return trace;
+}
+
+int sumBrzeg(int m, int n, int matrix[m][n]) {
+    int sum = 0;
+    for(int i=0; i<m; i++) {
+        for(int j=0; j<n; j++) {
+            if(i == 0 || i == m-1 || j == 0 || j == n-1) {
+                if(matrix[i][j] % 2 == 0) {
+                    sum += matrix[i][j];
+                }
+            }
+        }
+    }
+    return sum;
+}
+
+int main() {
+    int matrix1[3][3] = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+    printf("wymiar tablicy: %d\n", wymiar(3, matrix1));
+
+    int matrix2[4][5] = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20} };
+    printf("suma parzystych: %d\n", sumBrzeg(4, 5, matrix2));
+
+    return 0;
+}
+
+
+Zadanie 4
+
+#include <stdio.h>
+
+void reverseColumns(int arr[][3], int rows, int cols) {
+    for (int j = 0; j < cols; j++) {
+        int start = 0;
+        int end = rows - 1;
+
+        while (start < end) {
+            int temp = arr[start][j];
+            arr[start][j] = arr[end][j];
+            arr[end][j] = temp;
+
+            start++;
+            end--;
+        }
+    }
+}
+
+void shiftColumns(int arr[][3], int rows, int cols) {
+    int temp[rows][cols];
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            int shiftedCol = (j + 2) % cols;
+            temp[i][shiftedCol] = arr[i][j];
+        }
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            arr[i][j] = temp[i][j];
+        }
+    }
+}
+
+void printArray(int arr[][3], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int arr1[][3] = {{1, 2, 3},
+                     {4, 5, 6},
+                     {7, 8, 9}};
+
+    printf("Przed odwróceniem kolumn:\n");
+    printArray(arr1, 3, 3);
+
+    reverseColumns(arr1, 3, 3);
+
+    printf("\nPo odwróceniu kolumn:\n");
+    printArray(arr1, 3, 3);
+
+    int arr2[][3] = {{1, 2, 3},
+                     {4, 5, 6},
+                     {7, 8, 9}};
+
+    printf("\nPrzed przesunięciem kolumn:\n");
+    printArray(arr2, 3, 3);
+
+    shiftColumns(arr2, 3, 3);
+
+    printf("\nPo przesunięciu kolumn:\n");
+    printArray(arr2, 3, 3);
+
+    return 0;
+}
+
+Zadanie 5
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void insertNode(struct Node** head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+struct Node* getAlternateList(struct Node* head) {
+    struct Node* alternateList = NULL;
+    struct Node* tail = NULL;
+
+    for (int count = 1; head != NULL; count++) {
+        if (count % 2 == 1) {
+            insertNode(&alternateList, head->data);
+            if (tail == NULL) {
+                tail = alternateList;
+            }
+        }
+        head = head->next;
+    }
+
+    if (tail != NULL) {
+        tail->next = NULL;
+    }
+
+    return alternateList;
+}
+
+void printList(struct Node* head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+void freeList(struct Node** head) {
+    struct Node* temp;
+    while (*head != NULL) {
+        temp = *head;
+        *head = (*head)->next;
+        free(temp);
+    }
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Dodaj przykładowe elementy do listy
+    insertNode(&head, 2);
+    insertNode(&head, 1587);
+
+    printf("Oryginalna lista: ");
+    printList(head);
+
+    struct Node* alternateList = getAlternateList(head);
+
+    printf("Lista składająca się z co drugiego elementu: ");
+    printList(alternateList);
+
+    freeList(&head);
+    freeList(&alternateList);
+
+    return 0;
+}
+
+Zadanie 6
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertNode(struct Node** head, int data) {
+    if (*head == NULL) {
+        *head = createNode(data);
+    } else {
+        struct Node* newNode = createNode(data);
+        newNode->next = *head;
+        *head = newNode;
+    }
+}
+
+void deleteMiddleElement(struct Node** head) {
+    if (*head == NULL) {
+        return;
+    }
+
+    struct Node* slowPtr = *head;
+    struct Node* fastPtr = *head;
+    struct Node* prevNode = NULL;
+
+    while (fastPtr != NULL && fastPtr->next != NULL) {
+        fastPtr = fastPtr->next->next;
+        prevNode = slowPtr;
+        slowPtr = slowPtr->next;
+    }
+
+    if (prevNode != NULL) {
+        prevNode->next = slowPtr->next;
+    } else {
+        *head = slowPtr->next;
+    }
+
+    free(slowPtr);
+}
+
+void printList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void freeList(struct Node** head) {
+    struct Node* temp = *head;
+    while (temp != NULL) {
+        struct Node* current = temp;
+        temp = temp->next;
+        free(current);
+    }
+    *head = NULL;
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Dodaj przykładowe elementy do listy
+    insertNode(&head, 6);
+    insertNode(&head, 91);
+    insertNode(&head, 58);
+
+    printf("Oryginalna lista: ");
+    printList(head);
+
+    deleteMiddleElement(&head);
+
+    printf("Lista po usunięciu środkowego elementu: ");
+    printList(head);
+
+    freeList(&head);
+
+    return 0;
+}
