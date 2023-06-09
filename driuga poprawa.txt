@@ -1,0 +1,419 @@
+Zadanie 1
+
+Napisz funkcję przepisz, która dostaje jako arguemnty dwie tablice znaków i zlicza liczbę wystąpień napisu pierwsezgo w drugim np. dla napisów "ma" oraz "mama ma mala marynarke", program zwraca 5 . Zliczamy tylko liczbę rozłączonych wystąpień to znaczy kawałek napisu wykrytego wcześniej nie może tworzyć kawałka napisu wykrytego później np. napis "nana" w napisie "nananananabanana", mamy 3 wystąpienia na indeksach 0, -3, 4, -7, 12, -15. Wynikiem funkcji więc jest 3
+#include <stdio.h>
+#include <string.h>
+
+int przepisz(const char* napis1, const char* napis2) {
+    int count = 0;
+    int n1 = strlen(napis1);
+    int n2 = strlen(napis2);
+
+    int i = 0;
+    while (i <= n2 - n1) {
+        int j = 0;
+        while (j < n1 && napis1[j] == napis2[i + j]) {
+            j++;
+        }
+        if (j == n1) {
+            count++;
+            i += n1;
+        } else {
+            i++;
+        }
+    }
+
+    return count;
+}
+
+int main() {
+    const char* napis1 = "ma";
+    const char* napis2 = "mama ma mala marynarke";
+    int result = przepisz(napis1, napis2);
+    printf("%d\n", result);
+
+    const char* napis3 = "nana";
+    const char* napis4 = "nananananabanana";
+    int result2 = przepisz(napis3, napis4);
+    printf("%d\n", result2);
+
+    return 0;
+}
+
+Zadanie 2
+
+Napisz funkcję odwróć, która otrzymuje jako argument tablicę znaków i odwraca kolejność znaków w napisie znajdującym się w tablicy. Np. wywoływanie funkcji dla napisu Master zamieni go na napis retsaM. W języku C
+
+#include <stdio.h>
+#include <string.h>
+
+void odwroc(char* tablica) {
+    int dlugosc = strlen(tablica);
+    int i, j;
+    char temp;
+
+    for (i = 0, j = dlugosc - 1; i < j; i++, j--) {
+        temp = tablica[i];
+        tablica[i] = tablica[j];
+        tablica[j] = temp;
+    }
+}
+
+int main() {
+    char napis[] = "Master";
+    printf("Przed odwróceniem: %s\n", napis);
+    odwroc(napis);
+    printf("Po odwróceniu: %s\n", napis);
+
+    return 0;
+}
+
+Zadanie 3
+
+Napisz funkcję, która otrzymuje w argumencie dodatnią liczbę całkowitą n oraz dwuwymiarową trójkątną tablicę tablic elementów typu unsigned int o rozmiarach n na n. Funkcja ma zwrócić indeks kolumny o maksymalnej średniej arytmetycznej znajdujących się w niej elementów. Jeśli jest kilka takich kolumn to zwrócić indeks dowolnej spośród nich. Maksymalna srednia arytmetyczna wystepuje w kolumnie o indeksie 2
+
+#include <stdio.h>
+
+int znajdz_indeks_maks_sredniej(unsigned int **tablica, int n) {
+    int indeks_maks = 0;  // Indeks kolumny o maksymalnej średniej
+    double maks_srednia = 0.0;  // Maksymalna średnia arytmetyczna
+
+    for (int kolumna = 0; kolumna < n; kolumna++) {
+        double suma = 0.0;  // Suma elementów w kolumnie
+        int ilosc_elementow = 0;  // Liczba elementów w kolumnie
+
+        for (int wiersz = kolumna; wiersz < n; wiersz++) {
+            suma += tablica[wiersz][kolumna];
+            ilosc_elementow++;
+        }
+
+        double srednia = suma / ilosc_elementow;
+
+        if (srednia > maks_srednia) {
+            maks_srednia = srednia;
+            indeks_maks = kolumna;
+        }
+    }
+
+    return indeks_maks;
+}
+
+int main() {
+    unsigned int tablica[4][4] = {
+        {4, 0, 0, 0},
+        {2, 3, 0, 0},
+        {1, 9, 8, 0},
+        {2, 1, 2, 3}
+    };
+
+    int n = 4;
+    unsigned int *wskazniki[4];
+
+    for (int i = 0; i < n; i++) {
+        wskazniki[i] = tablica[i];
+    }
+
+    int indeks_maks = znajdz_indeks_maks_sredniej(wskazniki, n);
+    printf("Indeks kolumny o maksymalnej średniej: %d\n", indeks_maks);
+
+    return 0;
+}
+
+Zadanie 4
+
+Napisz funkcję, która dostaje jako argumenty tablicę dwuwymairową o elementach typu int oraz jej wymiary i zmienia kolejność wierszy przesuwając je o dwa w dół w tablicy w taki sposób, że wiersz pierwszy ma sie znaleźć na miejscu trzeciego, wiersz drugi na miejscu czwartego itd., natomiast ostatni wiersz ma się znaleźć na miejscu drugiego a przedostatni na miejscu pierwszego.
+
+#include <stdio.h>
+
+void przesun_wiersze(int **tablica, int rows, int cols) {
+    int temp[cols];  // Tablica tymczasowa do przechowywania wiersza
+
+    // Przesunięcie wierszy o dwa w dół
+    for (int i = rows - 1; i >= 2; i--) {
+        for (int j = 0; j < cols; j++) {
+            temp[j] = tablica[i][j];
+        }
+        for (int j = 0; j < cols; j++) {
+            tablica[i][j] = tablica[i - 2][j];
+        }
+        for (int j = 0; j < cols; j++) {
+            tablica[i - 2][j] = temp[j];
+        }
+    }
+}
+
+int main() {
+    int tablica[4][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9},
+        {10, 11, 12}
+    };
+
+    int rows = 4;
+    int cols = 3;
+    int *wskazniki[4];
+
+    for (int i = 0; i < rows; i++) {
+        wskazniki[i] = tablica[i];
+    }
+
+    printf("Przed przesunięciem:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%2d ", tablica[i][j]);
+        }
+        printf("\n");
+    }
+
+    przesun_wiersze(wskazniki, rows, cols);
+
+    printf("Po przesunięciu:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%2d ", tablica[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Zadanie 5
+
+Napisz funkcję która oblicza średnią arytmetyczną z liczb całkowitych przechowywanych w polach i elementów listy przekazanej w jej argumencie
+
+#include <stdio.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+float oblicz_srednia(Node* lista) {
+    if (lista == NULL) {
+        return 0.0;
+    }
+
+    int suma = 0;
+    int licznik = 0;
+    Node* obecny = lista;
+
+    while (obecny != NULL) {
+        suma += obecny->data;
+        licznik++;
+        obecny = obecny->next;
+    }
+
+    if (licznik == 0) {
+        return 0.0;
+    }
+
+    return (float)suma / licznik;
+}
+
+int main() {
+    Node* lista = NULL;
+
+    // Dodawanie elementów do listy
+    Node* pierwszy = (Node*)malloc(sizeof(Node));
+    pierwszy->data = 5;
+    pierwszy->next = NULL;
+    lista = pierwszy;
+
+    Node* drugi = (Node*)malloc(sizeof(Node));
+    drugi->data = 10;
+    drugi->next = NULL;
+    pierwszy->next = drugi;
+
+    Node* trzeci = (Node*)malloc(sizeof(Node));
+    trzeci->data = 15;
+    trzeci->next = NULL;
+    drugi->next = trzeci;
+
+    // Obliczanie średniej
+    float srednia = oblicz_srednia(lista);
+    printf("Średnia arytmetyczna: %.2f\n", srednia);
+
+    // Zwolnienie pamięci zajmowanej przez listę
+    Node* obecny = lista;
+    while (obecny != NULL) {
+        Node* temp = obecny;
+        obecny = obecny->next;
+        free(temp);
+    }
+
+    return 0;
+}
+
+Zadanie 6 (Nie do konca dobrze)
+
+Napisz funkcję której argumentami są dwie listy. Funkcja tworzy z nich jedną listę w następujący sposób: pierwszym jej elementem jest element pierwszej listy. Później występują elementy z listy drugiej do momentu aż któryś z nich będzie równy pierwszemu elementowi pierwszej, dalej elementy listy pierwszej gdy któryś będzie równy któremuś z wczesniej już dopisanych do listy elementów z listy drugiej i tak na przemian. Gdy wyczerpana zostanei któraś z list jako ostatnie elementy dopisujemy po kolei wszystkie nie wykorzsystane do tej pory elementy z niewyczerpanej listy.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+Node* tworz_liste(Node* lista1, Node* lista2) {
+    if (lista1 == NULL) {
+        return lista2;
+    }
+    if (lista2 == NULL) {
+        return lista1;
+    }
+
+    Node* nowa_lista = NULL;
+    Node* obecny1 = lista1;
+    Node* obecny2 = lista2;
+
+    nowa_lista = obecny1;
+    obecny1 = obecny1->next;
+    Node* ostatni = nowa_lista;
+
+    while (obecny1 != NULL && obecny2 != NULL) {
+        Node* nowy = (Node*)malloc(sizeof(Node));
+        nowy->data = obecny2->data;
+        nowy->next = NULL;
+
+        ostatni->next = nowy;
+        ostatni = nowy;
+
+        if (obecny2->data == lista1->data) {
+            break;
+        }
+
+        nowy = (Node*)malloc(sizeof(Node));
+        nowy->data = obecny1->data;
+        nowy->next = NULL;
+
+        ostatni->next = nowy;
+        ostatni = nowy;
+
+        if (obecny1->data == lista2->data) {
+            break;
+        }
+
+        obecny1 = obecny1->next;
+        obecny2 = obecny2->next;
+    }
+
+    if (obecny1 != NULL) {
+        ostatni->next = obecny1;
+    }
+    if (obecny2 != NULL) {
+        ostatni->next = obecny2;
+    }
+
+    return nowa_lista;
+}
+
+void wyswietl_liste(Node* lista) {
+    Node* obecny = lista;
+    while (obecny != NULL) {
+        printf("%d ", obecny->data);
+        obecny = obecny->next;
+    }
+    printf("\n");
+}
+
+void zwolnij_liste(Node* lista) {
+    Node* obecny = lista;
+    while (obecny != NULL) {
+        Node* temp = obecny;
+        obecny = obecny->next;
+        free(temp);
+    }
+}
+
+int main() {
+    Node* lista1 = NULL;
+
+    Node* pierwszy1 = (Node*)malloc(sizeof(Node));
+    pierwszy1->data = 5;
+    pierwszy1->next = NULL;
+    lista1 = pierwszy1;
+
+    Node* drugi1 = (Node*)malloc(sizeof(Node));
+    drugi1->data = 8;
+    drugi1->next = NULL;
+    pierwszy1->next = drugi1;
+
+    Node* trzeci1 = (Node*)malloc(sizeof(Node));
+    trzeci1->data = 9;
+    trzeci1->next = NULL;
+    drugi1->next = trzeci1;
+
+    Node* czwarty1 = (Node*)malloc(sizeof(Node));
+    czwarty1->data = 6;
+    czwarty1->next = NULL;
+    trzeci1->next = czwarty1;
+
+    Node* piaty1 = (Node*)malloc(sizeof(Node));
+    piaty1->data = 2;
+    piaty1->next = NULL;
+    czwarty1->next = piaty1;
+
+    Node* lista2 = NULL;
+
+    Node* pierwszy2 = (Node*)malloc(sizeof(Node));
+    pierwszy2->data = 1;
+    pierwszy2->next = NULL;
+    lista2 = pierwszy2;
+
+    Node* drugi2 = (Node*)malloc(sizeof(Node));
+    drugi2->data = 6;
+    drugi2->next = NULL;
+    pierwszy2->next = drugi2;
+
+    Node* trzeci2 = (Node*)malloc(sizeof(Node));
+    trzeci2->data = 7;
+    trzeci2->next = NULL;
+    drugi2->next = trzeci2;
+
+    Node* czwarty2 = (Node*)malloc(sizeof(Node));
+    czwarty2->data = 5;
+    czwarty2->next = NULL;
+    trzeci2->next = czwarty2;
+
+    Node* piaty2 = (Node*)malloc(sizeof(Node));
+    piaty2->data = 4;
+    piaty2->next = NULL;
+    czwarty2->next = piaty2;
+
+    Node* szosty2 = (Node*)malloc(sizeof(Node));
+    szosty2->data = 9;
+    szosty2->next = NULL;
+    piaty2->next = szosty2;
+
+    Node* siodmy2 = (Node*)malloc(sizeof(Node));
+    siodmy2->data = 1;
+    siodmy2->next = NULL;
+    szosty2->next = siodmy2;
+
+    Node* osmy2 = (Node*)malloc(sizeof(Node));
+    osmy2->data = 2;
+    osmy2->next = NULL;
+    siodmy2->next = osmy2;
+
+    Node* dziewiaty2 = (Node*)malloc(sizeof(Node));
+    dziewiaty2->data = 4;
+    dziewiaty2->next = NULL;
+    osmy2->next = dziewiaty2;
+
+    Node* wynik = tworz_liste(lista1, lista2);
+
+    wyswietl_liste(wynik);
+
+    zwolnij_liste(wynik);
+
+    return 0;
+}
+
+
+
+
+
